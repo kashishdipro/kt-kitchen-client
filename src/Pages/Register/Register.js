@@ -25,7 +25,10 @@ const Register = () => {
             updateProfile(name, photo);
             console.log(user);
         })
-        .catch(error => console.error(error))
+        .catch(error => {
+            setError(error.message)
+            console.error(error)
+        })
     }
     const updateProfile = (name, photo) =>{
         const profile = {

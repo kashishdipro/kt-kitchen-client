@@ -1,11 +1,30 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthProvider';
 import login from '../../img/login.png'
 
 const Login = () => {
+    const {logIn} = useContext(AuthContext);
+    const [error, setError] = useState(null);
 
     const handleLogin = event =>{
         event.preventDefault();
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        logIn(email, password)
+        .then(result =>{
+            const user = result.user;
+            form.reset();
+            setError('');
+            console.log(user);
+        })
+        .catch(error => {
+            console.error(error);
+            setError(error.message);
+        })
+
     }
     return (
         <section className='sm:p-4 md:p-6 w-full'>
@@ -22,6 +41,9 @@ const Login = () => {
                         <input type="password" name="password" placeholder="Your password" className="bg-gray-50 border border-gray-300 text-neutral-400 text-lg rounded-lg focus:ring-cyan-500 focus:border-cyan-500 block w-full p-2.5" required/>
                     </div>
                     <input type="submit" className="w-full text-white bg-cyan-400 hover:bg-cyan-800 focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" value="Login" />
+                    <div className="text-sm font-medium text-rose-600 mb-4">
+                        <p>{error}</p>
+                    </div>
                     <div className="text-sm font-medium text-neutral-400 mb-4">
                         Not registered? <Link to='/register' className="text-cyan-400 hover:underline">Create account</Link>
                     </div>
