@@ -1,6 +1,7 @@
 import { Button, Typography } from '@material-tailwind/react';
 import React, { useEffect, useState } from 'react';
-import CardItem from './CardItem';
+import { Link } from 'react-router-dom';
+import CardItem from '../../../Shared/CardItem';
 
 const FoodItems = () => {
     const [items, setItems] = useState([]);
@@ -23,7 +24,7 @@ const FoodItems = () => {
                     ></CardItem>)
                 }
             </div>
-            <Button className='bg-red-700 hover:bg-red-900 p-4 '>See All</Button>
+            <Link to='/items'><Button className='bg-red-700 hover:bg-red-900 p-4'>See All</Button></Link>
         </section>
     );
 };

@@ -1,3 +1,4 @@
+import AllFoodItems from "../Pages/AllFoodItems/AllFoodItems";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
@@ -13,6 +14,10 @@ const routes = createBrowserRouter([
             {
                 path: '/',
                 element: <Home/>
+            },
+            {
+                path: '/items',
+                element: <AllFoodItems/>
             },
             {
                 path: '/login',
