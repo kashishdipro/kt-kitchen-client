@@ -2,8 +2,8 @@ import { Avatar, Button } from '@material-tailwind/react';
 import React, { useEffect, useState } from 'react';
 import { FaPen, FaTrashAlt } from 'react-icons/fa';
 
-const ReviewRowTable = ({review}) => {
-    const {reviewerName, email, message, item} = review;
+const ReviewRowTable = ({review, handleDelete}) => {
+    const {_id, reviewerName, email, message, item} = review;
     const [reviewItem, setReviewItem] = useState({});
 
     useEffect(() =>{
@@ -11,18 +11,22 @@ const ReviewRowTable = ({review}) => {
         .then(res => res.json())
         .then(data => setReviewItem(data))
     },[item])
+
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(!open);
+
     return (
         <tr>
-            <td>
-            <div className="flex items-center space-x-3">
+            <td className='px-2'>
+            <div className="flex md:items-center items-start space-x-3">
                 {
                     reviewItem?.image && 
-                    <Avatar className='w-12 h-12 bg-neutral-200 lg:inline-block' src={reviewItem.image} alt="avatar" variant="circular"/>
+                    <Avatar className='md:w-12 md:h-12 w-8 h-8 bg-neutral-200 lg:inline-block my-2' src={reviewItem.image} alt="avatar" variant="circular"/>
                 }
                 <div>
                     {
                         reviewItem?.name && 
-                        <div className="font-bold text-neutral-600">{reviewItem.name}</div>
+                        <div className="md:font-semibold font-normal text-neutral-600">{reviewItem.name}</div>
 
                     }
                     {
@@ -32,17 +36,16 @@ const ReviewRowTable = ({review}) => {
                 </div>
             </div>
             </td>
-            <td>
-            <span className='font-bold text-neutral-600'>{reviewerName}</span>
+            <td className='px-2'>
+            <span className='md:font-semibold font-normal text-neutral-600 text-center'>{reviewerName}</span>
             <br/>
-            <span className="text-sm text-neutral-400">{email}</span>
+            <span className="text-sm text-neutral-400 text-center">{email}</span>
             </td>
-            <td className='font-lg text-neutral-600'>{message}</td>
+            <td className='md:font-lg text-neutral-600 px-2'>{message}</td>
             <th>
-            <Button className='text-red-700 hover:text-red-900 p-2'><FaPen/></Button>
+            <Button onClick={() =>handleDelete(_id)} className='text-red-700 hover:text-red-900 p-2'><FaTrashAlt/></Button>
             <br />
-            <Button className='text-red-700 hover:text-red-900 p-2'><FaTrashAlt/></Button>
-            {/* <button className="btn btn-warning">{status ? status : 'pending ...'}</button> */}
+            <Button className='text-red-700 hover:text-red-900 p-2'><FaPen/></Button>
             </th>
         </tr>
     );

@@ -9,58 +9,60 @@ import React, { useContext, useEffect, useState } from 'react';import {
 import { Link } from 'react-router-dom';
 import logo from '../img/logo.png'
 import { AuthContext } from '../context/AuthProvider';
- 
-const navList = (
-  <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-    <Typography
-      as="li"
-      variant="small"
-      className="p-1 font-normal text-neutral-400"
-    >
-      <Link to='/' className="flex items-center">
-        Home
-      </Link>
-    </Typography>
-    <Typography
-      as="li"
-      variant="small"
-      className="p-1 font-normal text-neutral-400"
-    >
-      <Link href="/" className="flex items-center">
-        Categories
-      </Link>
-    </Typography>
-    <Typography
-      as="li"
-      variant="small"
-      className="p-1 font-normal text-neutral-400"
-    >
-      <Link to='/myreview' className="flex items-center">
-        My Review
-      </Link>
-    </Typography>
-    <Typography
-      as="li"
-      variant="small"
-      className="p-1 font-normal text-neutral-400"
-    >
-      <Link to='/' className="flex items-center">
-        Add Item
-      </Link>
-    </Typography>
-    <Typography
-      as="li"
-      variant="small"
-      className="p-1 font-normal text-neutral-400"
-    >
-      <Link href="#" className="flex items-center">
-        Blog
-      </Link>
-    </Typography>
-  </ul>
-  );
 
 const Nav = () => {
+  const {user, logOut} = useContext(AuthContext);
+  
+  const navList = <>
+  <Typography
+    as="li"
+    variant="small"
+    className="p-1 font-normal text-neutral-400"
+  >
+    <Link to='/' className="flex items-center">
+      Home
+    </Link>
+  </Typography>
+  <Typography
+    as="li"
+    variant="small"
+    className="p-1 font-normal text-neutral-400"
+  >
+    <Link href="/" className="flex items-center">
+      Categories
+    </Link>
+  </Typography>
+  {
+    user?.uid && <Typography
+    as="li"
+    variant="small"
+    className="p-1 font-normal text-neutral-400"
+  >
+    <Link to='/myreview' className="flex items-center">
+      My Review
+    </Link>
+  </Typography>
+  }
+  <Typography
+    as="li"
+    variant="small"
+    className="p-1 font-normal text-neutral-400"
+  >
+    <Link to='/' className="flex items-center">
+      Add Item
+    </Link>
+  </Typography>
+  <Typography
+    as="li"
+    variant="small"
+    className="p-1 font-normal text-neutral-400"
+  >
+    <Link href="#" className="flex items-center">
+      Blog
+    </Link>
+  </Typography>
+</>
+
     const [openNav, setOpenNav] = useState(false);
  
     useEffect(() => {
@@ -69,8 +71,6 @@ const Nav = () => {
         () => window.innerWidth >= 960 && setOpenNav(false)
         );
     }, []);
-
-    const {user, logOut} = useContext(AuthContext);
 
     const handleLogOut = () =>{
         logOut()
@@ -89,7 +89,11 @@ const Nav = () => {
                 <span>KT Kitchen</span>
                 </Link>
             </div>
-            <div className="hidden lg:block">{navList}</div>
+            <div className="hidden lg:block">
+            <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+              {navList}
+            </ul>
+            </div>
             {
               user?.uid ?
               <div className="flex gap-4">
@@ -144,7 +148,9 @@ const Nav = () => {
             </IconButton>
         </div>
         <MobileNav open={openNav}>
-            {navList}
+            <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+              {navList}
+            </ul>
             {
               user?.uid ?
               <Button onClick={handleLogOut} size="sm" className="bg-cyan-400 lg:inline-block">

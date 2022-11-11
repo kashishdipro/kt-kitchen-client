@@ -1,26 +1,46 @@
 import React, { useContext, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../context/AuthProvider';
 import ReviewRowTable from './ReviewRowTable';
 
 const MyReview = () => {
     const {user} = useContext(AuthContext);
-    const [reviews, setReviews] = useState({});
+    const [reviews, setReviews] = useState([]);
 
     useEffect(() =>{
         fetch(`http://localhost:5000/reviews?email=${user?.email}`)
         .then(res => res.json())
         .then(data => setReviews(data))
-    },[user.email])
+    },[user?.email])
+
+    const handleDelete = id =>{
+        const proceed = window.confirm('Are you sure, you want to delete this review');
+        if(proceed){
+            fetch(`http://localhost:5000/reviews/${id}`, {
+                method: 'DELETE'
+            })
+            .then(res => res.json())
+            .then(data =>{
+                if(data.deletedCount > 0){
+                    toast.success('Deleted Successfully!')
+                    const remaining = reviews.filter(review => review._id !== id);
+                    setReviews(remaining);
+                }
+                console.log(data);
+            })
+        }
+    }
     return (
         <section className='my-5'>
-            <h2>You have reviews: {reviews.length}</h2>
+            <h2>You have reviews: {reviews.length} reviews</h2>
             <div className="overflow-x-auto w-full">
                 <table className="table w-full">
                     <thead className='bg-neutral-100'>
                         <tr className='text-neutral-600'>
-                            <th>Items Name</th>
-                            <th>Customer Name</th>
+                            <th className='py-4'>Items Info</th>
+                            <th>Customer Info</th>
                             <th>Customer Review</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,6 +48,7 @@ const MyReview = () => {
                             reviews.map(review =><ReviewRowTable
                             key={review._id}
                             review={review}
+                            handleDelete={handleDelete}
                             ></ReviewRowTable>)
                         }
                     </tbody>
