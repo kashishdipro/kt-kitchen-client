@@ -1,10 +1,12 @@
 import { Button, Typography } from '@material-tailwind/react';
-import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { FaDna, FaCartPlus } from 'react-icons/fa';
+import Review from './Review';
+import React from 'react';
 
 const ItemDetails = () => {
     const {image, name, description, ingredients, price, category, _id} = useLoaderData();
+
     return (
         <section className="m-4">
             <div className="flex justify-center">
@@ -29,7 +31,8 @@ const ItemDetails = () => {
                     </div>
                     </div>
                 </div>
-                </div>
+            </div>
+            <Review id={_id}/>
         </section>
     );
 };

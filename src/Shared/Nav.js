@@ -35,8 +35,17 @@ const navList = (
       variant="small"
       className="p-1 font-normal text-neutral-400"
     >
-      <Link href="#" className="flex items-center">
+      <Link to='/myreview' className="flex items-center">
         My Review
+      </Link>
+    </Typography>
+    <Typography
+      as="li"
+      variant="small"
+      className="p-1 font-normal text-neutral-400"
+    >
+      <Link to='/' className="flex items-center">
+        Add Item
       </Link>
     </Typography>
     <Typography

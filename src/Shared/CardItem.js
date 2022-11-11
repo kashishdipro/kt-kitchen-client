@@ -35,7 +35,7 @@ const CardItem = ({item}) => {
             </CardBody>
             <CardFooter divider className="flex items-center justify-between px-4 py-3">
                 <Typography className='text-neutral-600 text-2xl font-bold'>BDT {price}</Typography>
-                <Link to={`/item/${_id}`}><Button size='sm' className='bg-red-700 hover:bg-red-900 text-neutral-400 p-2'>View Details</Button></Link>
+                <Link to={`/item/${_id}`}><Button size='sm' className='bg-red-700 hover:bg-red-900 text-neutral-200 p-2'>View Details</Button></Link>
             </CardFooter>
         </Card>
     );
