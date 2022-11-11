@@ -62,7 +62,7 @@ const Review = ({id}) => {
                         <div className="w-full">
                             <Textarea name='message' placeholder="Message" className='text-neutral-600 bg-neutral-50 border-red-700 focus:border-red-900 text-lg px-2' required/>
                         </div>
-                        <button type='submit'><FaArrowCircleRight className='text-red-700 hover:text-red-900 cursor-pointer'/></button>
+                        <button type='submit'><FaArrowCircleRight className='text-red-700 hover:text-red-900'/></button>
                     </div>
                 </form>
                 :
