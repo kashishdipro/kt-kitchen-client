@@ -27,7 +27,7 @@ const ItemDetails = () => {
                     <div className='flex items-center justify-between py-3'>
                     <Typography className='flex items-center text-neutral-600 md:text-2xl text-xl font-bold'><FaDna className='mr-2 w-4 text-red-900'/>{category}</Typography>
                     <Typography className='text-red-700 md:text-2xl text-xl font-bold'>BDT {price}</Typography>
-                    <Link to={`/item/${_id}`}><Button size='sm' className='bg-red-700 hover:bg-red-900 p-2'><FaCartPlus/></Button></Link>
+                    {/* <Link to={`/item/${_id}`}><Button size='sm' className='bg-red-700 hover:bg-red-900 p-2'><FaCartPlus/></Button></Link> */}
                     </div>
                     </div>
                 </div>

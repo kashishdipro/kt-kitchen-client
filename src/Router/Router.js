@@ -5,6 +5,7 @@ import Register from "../Pages/Register/Register";
 import ItemDetails from "../Pages/ItemDetails/ItemDetails";
 import MyReview from "../Pages/MyReview/MyReview";
 import ProtectedRoutes from "./ProtectedRoutes/ProtectedRoutes";
+import EditReview from "../Pages/MyReview/EditReview";
 
 const { createBrowserRouter } = require("react-router-dom");
 const { default: Main } = require("../layout/Main");
@@ -19,11 +20,6 @@ const routes = createBrowserRouter([
                 element: <Home/>
             },
             {
-                path: '/myreview',
-                element: <MyReview/>
-                // element: <ProtectedRoutes><MyReview/></ProtectedRoutes>
-            },
-            {
                 path: '/items',
                 element: <AllFoodItems/>
             },
@@ -31,6 +27,16 @@ const routes = createBrowserRouter([
                 path:'/item/:id',
                 loader: ({params}) => fetch(`http://localhost:5000/items/${params.id}`),
                 element: <ItemDetails/>
+            },
+            {
+                path: '/myreview',
+                element: <MyReview/>
+                // element: <ProtectedRoutes><MyReview/></ProtectedRoutes>
+            },
+            {
+                path: '/editreview/:id',
+                loader: ({params}) => fetch(`http://localhost:5000/review/${params.id}`),
+                element: <EditReview/>
             },
             {
                 path: '/login',

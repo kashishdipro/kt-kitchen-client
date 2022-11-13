@@ -1,6 +1,7 @@
 import { Avatar, Button } from '@material-tailwind/react';
 import React, { useEffect, useState } from 'react';
 import { FaPen, FaTrashAlt } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const ReviewRowTable = ({review, handleDelete}) => {
     const {_id, reviewerName, email, message, item} = review;
@@ -11,9 +12,6 @@ const ReviewRowTable = ({review, handleDelete}) => {
         .then(res => res.json())
         .then(data => setReviewItem(data))
     },[item])
-
-    const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(!open);
 
     return (
         <tr>
@@ -43,9 +41,9 @@ const ReviewRowTable = ({review, handleDelete}) => {
             </td>
             <td className='md:font-lg text-neutral-600 px-2'>{message}</td>
             <th>
-            <Button onClick={() =>handleDelete(_id)} className='text-red-700 hover:text-red-900 p-2'><FaTrashAlt/></Button>
-            <br />
-            <Button className='text-red-700 hover:text-red-900 p-2'><FaPen/></Button>
+                <Button onClick={() =>handleDelete(_id)} className='text-red-700 hover:text-red-900 p-2'><FaTrashAlt/></Button>
+                <br />
+                <Link to={`/editreview/${_id}`}><Button className='text-red-700 hover:text-red-900 p-2'><FaPen/></Button></Link>
             </th>
         </tr>
     );

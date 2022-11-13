@@ -1,4 +1,4 @@
-import { Avatar, Button, Textarea, Typography } from '@material-tailwind/react';
+import { Avatar, Textarea, Typography } from '@material-tailwind/react';
 import { useContext } from 'react';
 import { FaArrowCircleRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
