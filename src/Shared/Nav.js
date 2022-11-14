@@ -28,8 +28,8 @@ const Nav = () => {
     variant="small"
     className="p-1 font-normal text-neutral-400"
   >
-    <Link href="/" className="flex items-center">
-      Categories
+    <Link to="/items" className="flex items-center">
+      All Items
     </Link>
   </Typography>
   {
@@ -57,7 +57,7 @@ const Nav = () => {
     variant="small"
     className="p-1 font-normal text-neutral-400"
   >
-    <Link href="#" className="flex items-center">
+    <Link to='/blog' className="flex items-center">
       Blog
     </Link>
   </Typography>

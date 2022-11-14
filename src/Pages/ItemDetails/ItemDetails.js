@@ -1,6 +1,6 @@
-import { Button, Typography } from '@material-tailwind/react';
-import { Link, useLoaderData } from 'react-router-dom';
-import { FaDna, FaCartPlus } from 'react-icons/fa';
+import { Typography } from '@material-tailwind/react';
+import { useLoaderData } from 'react-router-dom';
+import { FaDna } from 'react-icons/fa';
 import Review from './Review';
 import React from 'react';
 
