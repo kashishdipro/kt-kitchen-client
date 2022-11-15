@@ -36,11 +36,11 @@ const Review = ({id}) => {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data)
-            if(data.acknowledged){
-                form.reset();
-                toast.success('Review added successfully')
-            }
+            form.reset();
+            toast.success('Review added successfully');
+            const newReviews = [data, ...reviews];
+            console.log(newReviews);
+            setReviews(newReviews);
         })
         .catch(error => console.error(error))
     }
@@ -48,17 +48,19 @@ const Review = ({id}) => {
     useEffect(() =>{
         fetch(`http://localhost:5000/reviews?item=${id}`)
         .then(res => res.json())
-        .then(data => setReviews(data))
+        .then(data => {
+            setReviews(data)
+        })
     },[id])
     return (
         <div className="block md:mx-5 md:my-5 mx-1 my-4 p-6 rounded-lg shadow-lg bg-neutral-100 md:max-w-full">
             {
                 reviews.map(review =>
                     <div key={review._id} className="flex gap-4 border-b mb-2 py-2">
-                        <Avatar className='w-14 h-14 bg-neutral-200 lg:inline-block' src={review.photo} alt="avatar" variant="circular"/>
+                        <Avatar className='w-14 h-14 bg-neutral-200 lg:inline-block' src={review?.photo} alt="avatar" variant="circular"/>
                         <div className="flex flex-col justify-start w-full">
-                            <Typography className="text-neutral-600 md:text-xl text-xl font-semibold">{review.reviewerName}</Typography>
-                            <Typography className="text-neutral-400 md:text-lg text-base font-medium">{review.message}</Typography>
+                            <Typography className="text-neutral-600 md:text-xl text-lg font-semibold">{review?.reviewerName}</Typography>
+                            <Typography className="text-neutral-400 md:text-lg text-base font-medium">{review?.message}</Typography>
                         </div>
                     </div>    
                 )

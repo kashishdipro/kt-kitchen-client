@@ -32,11 +32,10 @@ const EditReview = () => {
         })
         .then(res => res.json())
         .then(data => {
-            toast.success('Updated successfully');
+            toast.success('Review updated successfully');
             navigate(from, {replace: true});
-            console.log(data);
-            // setItemInfo(data)
         })
+        .catch(error => console.error(error))
 
     }
     return (
