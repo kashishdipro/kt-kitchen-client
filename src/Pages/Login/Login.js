@@ -4,7 +4,7 @@ import { AuthContext } from '../../context/AuthProvider';
 import login from '../../img/login.png'
 
 const Login = () => {
-    const {logIn, setLoading} = useContext(AuthContext);
+    const {logIn} = useContext(AuthContext);
     const [error, setError] = useState(null);
     
     const navigate = useNavigate();
@@ -21,17 +21,30 @@ const Login = () => {
         logIn(email, password)
         .then(result =>{
             const user = result.user;
-            navigate(from, {replace: true});
+            const currentUser = {
+                email: user.email
+            }
             form.reset();
             setError('');
+            fetch('http://localhost:5000/jwt', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(currentUser)
+            })
+            .then(res => res.json())
+            .then(data =>{
+                localStorage.setItem('kt-token', data.token);
+                navigate(from, {replace: true});
+            })
         })
         .catch(error => {
-            console.error(error);
             setError(error.message);
         })
-        .finally(() =>{
-            setLoading(false);
-        })
+        // .finally(() =>{
+        //     setLoading(false);
+        // })
 
     }
     return (

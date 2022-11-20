@@ -8,6 +8,8 @@ import ProtectedRoutes from "./ProtectedRoutes/ProtectedRoutes";
 import EditReview from "../Pages/MyReview/EditReview";
 import AddItem from "../Pages/AddItem/AddItem";
 import Blog from "../Pages/Blog/Blog";
+import Policy from "../Shared/Policy";
+import Terms from "../Shared/Terms";
 
 const { createBrowserRouter } = require("react-router-dom");
 const { default: Main } = require("../layout/Main");
@@ -32,8 +34,8 @@ const routes = createBrowserRouter([
             },
             {
                 path: '/myreview',
-                element: <MyReview/>
-                // element: <ProtectedRoutes><MyReview/></ProtectedRoutes>
+                // element: <MyReview/>
+                element: <ProtectedRoutes><MyReview/></ProtectedRoutes>
             },
             {
                 path: '/editreview/:id',
@@ -42,7 +44,8 @@ const routes = createBrowserRouter([
             },
             {
                 path: '/additem',
-                element: <AddItem/>
+                // element: <AddItem/>
+                element: <ProtectedRoutes><AddItem/></ProtectedRoutes>
             },
             {
                 path: '/blog',
@@ -55,6 +58,14 @@ const routes = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register/>
+            },
+            {
+                path:'/policy',
+                element: <Policy/>
+            },
+            {
+                path:'/terms',
+                element: <Terms/>
             }
         ]
     }

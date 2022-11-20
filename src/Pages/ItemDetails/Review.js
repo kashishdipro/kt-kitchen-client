@@ -9,8 +9,6 @@ const Review = ({id}) => {
     const {user} = useContext(AuthContext);
     const [reviews, setReviews] = useState([]);
 
-    console.log(reviews);
-
     const handleReview = event =>{
         event.preventDefault();
         const form = event.target;
@@ -39,7 +37,6 @@ const Review = ({id}) => {
             form.reset();
             toast.success('Review added successfully');
             const newReviews = [data, ...reviews];
-            console.log(newReviews);
             setReviews(newReviews);
         })
         .catch(error => console.error(error))
@@ -55,7 +52,7 @@ const Review = ({id}) => {
     return (
         <div className="block md:mx-5 md:my-5 mx-1 my-4 p-6 rounded-lg shadow-lg bg-neutral-100 md:max-w-full">
             {
-                reviews.map(review =>
+                reviews?.map(review =>
                     <div key={review._id} className="flex gap-4 border-b mb-2 py-2">
                         <Avatar className='w-14 h-14 bg-neutral-200 lg:inline-block' src={review?.photo} alt="avatar" variant="circular"/>
                         <div className="flex flex-col justify-start w-full">

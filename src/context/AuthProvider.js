@@ -24,12 +24,12 @@ const AuthProvider = ({children}) => {
     }
 
     const logOut = () =>{
+        localStorage.removeItem('kt-token');
         return signOut(auth);
     }
 
     useEffect(() =>{
         const unsubscribe = onAuthStateChanged(auth, currentUser =>{
-            console.log(currentUser);
             setUser(currentUser);
             setLoading(false);
         });

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 
-const ProtectedRoutes = ({childern}) => {
+const ProtectedRoutes = ({children}) => {
     const {user, loading} = useContext(AuthContext);
     const location = useLocation();
     if(loading){
@@ -17,7 +17,7 @@ const ProtectedRoutes = ({childern}) => {
                 </div>
     }
     if(user && user.uid){
-        return childern;
+        return children;
     }
     return <Navigate to='/login' state={{from: location}} replace/>
 };
