@@ -3,10 +3,12 @@ import { useLoaderData } from 'react-router-dom';
 import { FaDna } from 'react-icons/fa';
 import Review from './Review';
 import React from 'react';
+import useTitle from '../../hooks/useTitle';
 
 const ItemDetails = () => {
     const {image, name, description, ingredients, price, category, _id} = useLoaderData();
 
+    useTitle('Item Details')
     return (
         <section className="m-4">
             <div className="flex justify-center">
@@ -18,7 +20,7 @@ const ItemDetails = () => {
                     <Typography className="text-neutral-600 md:text-xl text-lg font-semibold mb-4">Ingredients</Typography>
                     <ul>
                         {
-                            ingredients.map(ingredient =><li
+                            ingredients?.map(ingredient =><li
                             key={ingredient}
                             className="flex justify-start items-center"
                             ><p className='text-red-700 ml-4'>❯</p> <p className='text-neutral-400 text-xl font-medium mx-4'>{ingredient}</p></li>)
@@ -27,7 +29,6 @@ const ItemDetails = () => {
                     <div className='flex items-center justify-between py-3'>
                     <Typography className='flex items-center text-neutral-600 md:text-2xl text-xl font-bold'><FaDna className='mr-2 w-4 text-red-900'/>{category}</Typography>
                     <Typography className='text-red-700 md:text-2xl text-xl font-bold'>BDT {price}</Typography>
-                    {/* <Link to={`/item/${_id}`}><Button size='sm' className='bg-red-700 hover:bg-red-900 p-2'><FaCartPlus/></Button></Link> */}
                     </div>
                     </div>
                 </div>

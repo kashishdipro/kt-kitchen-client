@@ -18,7 +18,7 @@ const FoodItems = () => {
             <Typography variant="h2" className="text-red-700 text-5xl text-center font-bold">Our Food Items</Typography>
             <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 content-center gap-4 px-4 py-5'>
                 {
-                    items.map(item =><CardItem
+                    items?.map(item =><CardItem
                     key={item._id}
                     item={item}
                     ></CardItem>)

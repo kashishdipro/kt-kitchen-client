@@ -1,7 +1,10 @@
 import { Typography } from '@material-tailwind/react';
 import React from 'react';
+import useTitle from '../../hooks/useTitle';
 
 const Blog = () => {
+    useTitle('Blog')
+
     return (
         <section className='block md:mx-5 md:my-5 mx-1 my-4 p-6 rounded-lg shadow-lg bg-neutral-100 md:max-w-full'>
             <div className="flex flex-col justify-start w-full">

@@ -1,11 +1,19 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
+import useTitle from '../../hooks/useTitle';
 import login from '../../img/login.png'
 
 const Register = () => {
     const {createUser, updateUserProfile} = useContext(AuthContext);
     const [error, setError] = useState(null);
+
+    useTitle('Register')
+    
+    const navigate = useNavigate();
+
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
     const handleRegister = event =>{
         event.preventDefault();
@@ -23,7 +31,9 @@ const Register = () => {
         .then(result =>{
             const user = result.user;
             updateProfile(name, photo);
-            console.log(user);
+            form.reset();
+            setError('');
+            navigate(from, {replace: true});
         })
         .catch(error => {
             setError(error.message)

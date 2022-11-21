@@ -29,12 +29,11 @@ const routes = createBrowserRouter([
             },
             {
                 path:'/item/:id',
-                loader: ({params}) => fetch(`http://localhost:5000/items/${params.id}`),
+                loader: ({params}) => fetch(`http://localhost:5000/items/${params?.id}`),
                 element: <ItemDetails/>
             },
             {
                 path: '/myreview',
-                // element: <MyReview/>
                 element: <ProtectedRoutes><MyReview/></ProtectedRoutes>
             },
             {
@@ -44,7 +43,6 @@ const routes = createBrowserRouter([
             },
             {
                 path: '/additem',
-                // element: <AddItem/>
                 element: <ProtectedRoutes><AddItem/></ProtectedRoutes>
             },
             {

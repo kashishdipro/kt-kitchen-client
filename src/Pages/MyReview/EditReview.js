@@ -2,17 +2,15 @@ import { Button, Textarea, Typography } from '@material-tailwind/react';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { FaArrowCircleLeft, FaArrowCircleRight } from 'react-icons/fa';
-import { Link, useLoaderData, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
+import useTitle from '../../hooks/useTitle';
 
 const EditReview = () => {
     const {_id, item, message} = useLoaderData();
     const [itemInfo, setItemInfo] = useState([]);
     const {image, name} = itemInfo;
-    
-    const navigate = useNavigate();
 
-    const location = useLocation();
-    const from = location.state?.from?.pathname || '/';
+    useTitle('Edit Review')
 
     fetch(`http://localhost:5000/items/${item}`)
     .then(res => res.json())
@@ -33,7 +31,6 @@ const EditReview = () => {
         .then(res => res.json())
         .then(data => {
             toast.success('Review updated successfully');
-            navigate(from, {replace: true});
         })
         .catch(error => console.error(error))
 

@@ -100,7 +100,7 @@ const Nav = () => {
                 <Button onClick={handleLogOut} size="sm" className="hidden bg-cyan-400 lg:inline-block">
                 <span>Logout</span>
                 </Button>
-                <Avatar className='w-10 h-10 hidden bg-slate-400 lg:inline-block' src={user.photoURL} alt="avatar" variant="circular" />
+                <Avatar className='w-10 h-10 hidden bg-slate-400 lg:inline-block' src={user?.photoURL} alt="avatar" variant="circular" />
               </div>
               :
               <Link to='/login'>

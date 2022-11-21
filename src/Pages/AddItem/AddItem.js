@@ -1,8 +1,10 @@
-import { Input, Textarea, Typography } from '@material-tailwind/react';
+import { Textarea, Typography } from '@material-tailwind/react';
 import React from 'react';
 import toast from 'react-hot-toast';
+import useTitle from '../../hooks/useTitle';
 
 const AddItem = () => {
+    useTitle('Add Item')
     const handleAddItem = event =>{
         event.preventDefault();
         const form = event.target;
@@ -31,7 +33,6 @@ const AddItem = () => {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data)
             if(data.acknowledged){
                 form.reset();
                 toast.success('Food item added successfully')
