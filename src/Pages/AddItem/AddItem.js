@@ -24,7 +24,7 @@ const AddItem = () => {
             image
         }
 
-        fetch('http://localhost:5000/items', {
+        fetch('https://kt-kitchen-server.vercel.app/items', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

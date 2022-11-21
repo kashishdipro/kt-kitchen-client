@@ -8,7 +8,7 @@ const ReviewRowTable = ({review, handleDelete}) => {
     const [reviewItem, setReviewItem] = useState({});
 
     useEffect(() =>{
-        fetch(`http://localhost:5000/items/${item}`)
+        fetch(`https://kt-kitchen-server.vercel.app/items/${item}`)
         .then(res => res.json())
         .then(data => setReviewItem(data))
     },[item])

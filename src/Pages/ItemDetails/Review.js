@@ -25,7 +25,7 @@ const Review = ({id}) => {
             message
         }
 
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://kt-kitchen-server.vercel.app/reviews', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -43,7 +43,7 @@ const Review = ({id}) => {
     }
 
     useEffect(() =>{
-        fetch(`http://localhost:5000/reviews?item=${id}`)
+        fetch(`https://kt-kitchen-server.vercel.app/reviews?item=${id}`)
         .then(res => res.json())
         .then(data => {
             setReviews(data)

@@ -9,7 +9,7 @@ const AllFoodItems = () => {
     useTitle('All Items')
 
     useEffect(() =>{
-        fetch(`http://localhost:5000/items`)
+        fetch(`https://kt-kitchen-server.vercel.app/items`)
         .then(res => res.json())
         .then(data => {
             setItems(data.items)

@@ -32,7 +32,7 @@ const Login = () => {
             form.reset();
             setError('');
             navigate(from, {replace: true});
-            // fetch('http://localhost:5000/jwt', {
+            // fetch('https://kt-kitchen-server.vercel.app/jwt', {
             //     method: 'POST',
             //     headers: {
             //         'content-type': 'application/json'

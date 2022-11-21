@@ -12,7 +12,7 @@ const EditReview = () => {
 
     useTitle('Edit Review')
 
-    fetch(`http://localhost:5000/items/${item}`)
+    fetch(`https://kt-kitchen-server.vercel.app/items/${item}`)
     .then(res => res.json())
     .then(data => setItemInfo(data))
 
@@ -21,7 +21,7 @@ const EditReview = () => {
         const form = event.target;
         const message = form.message.value;
 
-        fetch(`http://localhost:5000/review/${_id}`, {
+        fetch(`https://kt-kitchen-server.vercel.app/review/${_id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'

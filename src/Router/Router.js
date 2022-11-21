@@ -10,6 +10,7 @@ import AddItem from "../Pages/AddItem/AddItem";
 import Blog from "../Pages/Blog/Blog";
 import Policy from "../Shared/Policy";
 import Terms from "../Shared/Terms";
+import NotFound from "../Pages/NotFound/NotFound";
 
 const { createBrowserRouter } = require("react-router-dom");
 const { default: Main } = require("../layout/Main");
@@ -29,7 +30,7 @@ const routes = createBrowserRouter([
             },
             {
                 path:'/item/:id',
-                loader: ({params}) => fetch(`http://localhost:5000/items/${params?.id}`),
+                loader: ({params}) => fetch(`https://kt-kitchen-server.vercel.app/items/${params?.id}`),
                 element: <ItemDetails/>
             },
             {
@@ -38,7 +39,7 @@ const routes = createBrowserRouter([
             },
             {
                 path: '/editreview/:id',
-                loader: ({params}) => fetch(`http://localhost:5000/review/${params.id}`),
+                loader: ({params}) => fetch(`https://kt-kitchen-server.vercel.app/review/${params.id}`),
                 element: <EditReview/>
             },
             {
@@ -58,12 +59,16 @@ const routes = createBrowserRouter([
                 element: <Register/>
             },
             {
-                path:'/policy',
+                path: '/policy',
                 element: <Policy/>
             },
             {
-                path:'/terms',
+                path: '/terms',
                 element: <Terms/>
+            },
+            {
+                path: '*',
+                element: <NotFound/>
             }
         ]
     }
